@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>test</title>
+	</head>
+	<body>
+		<script>
+			// var Game = new function(){
+			// 	this.x = 100
+			// 	this.func1 = function(){					
+			// 		this.func2 = function(){
+			// 			//this.x = 200
+			// 			console.log(this)
+			// 		}	
+			// 		this.func2()
+			// 	}
+			// 	this.func3 = function(){
+			// 		console.log(this.x)
+			// 	}				
+			// }
+			// Game.func1()
+			// Game.func3()
+
+			var Game = function(){
+
+			}
+
+			Game.prototype.out = function(){
+				console.log("prototype")
+			}
+
+			var game = new Game()
+			game.out()
+
+		</script>
+	</body>
+</html>

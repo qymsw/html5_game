@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>push_test</title>
+</head>
+<body>
+<script>
+	var Obj = new function(){
+		this.removed = []
+		this.remove = function(){
+			this.removed.push('aaa')
+		}			
+
+		this.show = function(){
+			console.log(this.removed)
+		}
+	}
+	Obj.remove()
+	Obj.show()
+</script>
+	
+</body>
+</html>

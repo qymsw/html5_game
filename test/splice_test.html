@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>splice_test</title>
+</head>
+<body>
+<script>
+	var log = console.log.bind(console)
+	var obj1 = new function(){
+		this.step = function(x,y){
+			log(x,y)
+		}
+	}
+	var GameBoard = new function(){
+		this. data = []
+		this.removed = []
+		this.add = function(newItem){
+			this.data.push(newItem)
+		}
+		this.markRemoved = function(removeItem){
+			this.removed.push(removeItem)
+		}
+		this.show = function(){
+			console.log(this.data)
+		}
+		this.showArguments = function(funcName){			
+			var args = Array.prototype.slice.call(arguments,1)			
+			// console.log(obj1[funcName])
+			// log(args)
+			obj1[funcName].apply(obj1,args)
+		}
+		this.finalizeRemoved = function(){
+			for(var i=0;i<this.removed.length;i++){
+				var idx = this.data.indexOf(this.removed[i])
+				console.log(idx)
+				if(idx != -1){
+					this.data.splice(idx,1)
+				}
+
+			}
+		}
+	}
+
+
+	// obj1.step([2,3,4,5])
+
+	// log(Array.prototype)
+
+
+	GameBoard.showArguments('step',1,2)
+	
+	// var Game = new function(){
+	// 	this.init = function(){
+	// 		for(var i=1;i<=10;i++){
+	// 			Obj.add(i)
+	// 		}
+	// 		// this.show()
+	// 	}
+	// 	this.show = function(){
+	// 		Obj.show()
+	// 	}
+	// }
+	// Game.init()
+	// Obj.markRemoved(3)
+	// Obj.markRemoved(15)
+	// Obj.finalizeRemoved()
+	// Obj.show()
+
+	
+
+</script>
+	
+</body>
+</html>

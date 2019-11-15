@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Game_test</title>
+	<style>
+/
+	</style>
+</head>
+<body>
+	<canvas width="300" height="400" id="game"></canvas>	
+	<script>
+		var log = console.log.bind(console)
+		var Game = function(){
+			this.step =function(){
+				document.write("gamestep"+"<br>")
+			}
+
+			this.draw = function(){
+				document.write("gamedraw"+"<br>")
+			}
+		}
+
+		var order = function(){
+			this.step =function(){
+				document.write("orderstep"+"<br>")
+			}
+
+			this.draw = function(){
+				document.write("orderdraw"+"<br>")
+			}
+		}
+
+		var game = new Game()
+		var order = new order()
+
+		var boards = []
+		boards.push(game)
+		boards.push(order)
+		setInterval(function(){
+			window.addEventListener("keydown",function(){
+				boards.pop()
+				log("sss")
+			})
+			for(var i=0;i<boards.length;i++){
+				boards[i].step()
+				boards[i].draw()
+			}
+		},1000)
+
+
+		
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas_test</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+
+		}
+		canvas{
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="400" height="500" id="game"></canvas>
+	<script>
+		window.onclick = function(e){
+					console.log(e.clientX,e.clientY)
+				}
+		var x=30
+		// console.log(0%30)
+		var canvas=document.getElementById('game')
+		var ctx = canvas.getContext('2d')
+		var createCanvas = document.createElement('canvas')
+		createCanvas.width = 400
+		createCanvas.height = 500
+		var createCtx = createCanvas.getContext('2d')
+		createCtx.fillStyle = "red"
+		createCtx.globalAlpha = 1		
+		var offset = 0		
+		var clear=1
+		if(clear){			
+			createCtx.fillStyle = "green"
+			createCtx.fillRect(0,0,400,500)			
+		}
+		createCtx.fillStyle = "red"
+		for(var i=0;i<100;i++){
+			var x = Math.floor(Math.random()*400)
+			var y = Math.floor(Math.random()*500)			
+			createCtx.fillRect(0,0,10,10)		
+			createCtx.fillRect(x,y,2,2)		
+		}
+		function setStar(){
+			// setInterval(function(){				
+				if(offset >= 500){
+					offset = 0
+				}				
+				// ctx.drawImage(createCanvas,0,500-offset,400,offset,0,0,400,offset);	
+				// ctx.drawImage(createCanvas,0,0,400,500-offset,0,offset,400,500-offset);	
+				// ctx.drawImage(createCanvas,0,480,400,20,0,0,400,20)
+				// ctx.drawImage(createCanvas,0,0,400,480,0,20,400,480)		
+				// ctx.drawImage(createCanvas,0,450,400,50,0,0,400,50)	
+				// ctx.drawImage(createCanvas,0,420,400,80,0,0,400,80)	
+				ctx.drawImage(createCanvas,0,0)
+				offset += 2
+				console.log(offset)
+			// },1000/60)
+		}
+		setStar()
+	</script>
+</body>
+</html>

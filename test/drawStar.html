@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>drawStar</title>
+	<style>
+		#game{
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas width="400" height="500" id="game"></canvas>
+	<script>
+		var StarField = function(speed,color,clear){
+			var starCanvas = document.createElement('canvas')
+			var starCtx = starCanvas.getContext('2d')
+			starCanvas.width = 400
+			starCanvas.height = 500
+			if(clear){
+				starCtx.fillStyle = "#fff"
+				starCtx.fillRect(0,0,400,500)
+			}
+			for(var i=0;i<20;i++){
+				var x = Math.floor(Math.random()*400)
+				var y = Math.floor(Math.random()*500)
+				starCtx.fillStyle = color
+				starCtx.fillRect(x,y,2,2)
+			}
+			
+			var offset = 0
+			this.draw = function(ctx){
+				// console.log(offset)
+				Game.ctx.drawImage(starCanvas,0,0,400,500-offset,0,offset,400,500-offset)	
+				Game.ctx.drawImage(starCanvas,0,500-offset,400,offset,0,0,400,offset)			
+			}
+			this.step = function(dt){
+				offset = offset + speed * dt
+				offset = offset % 500
+				// console.log(offset)
+			}
+		}
+
+		var Game = new function(canvasElementId){
+			this.init = function(canvasElementId){
+				this.canvas = document.getElementById(canvasElementId)
+				this.ctx = this.canvas.getContext('2d')
+				this.width = this.canvas.width
+				this.height = this.canvas.height	
+				this.loop()			
+			}
+			var boards = []
+			this.setBoard = function(num,board){
+				boards[num] = board
+				// console.log(num)
+			}
+			this.loop = function(){
+				setInterval(function(){
+				// console.log(starField.offset)
+					var dt=30/1000
+					for(var i=0;i<boards.length;i++){
+						// console.log(boards.length)
+						boards[i].step(dt)
+						boards[i].draw(Game.ctx)
+					}
+				},1000/30)
+			}
+		}
+		Game.setBoard(0,new StarField(100,"red",1))
+		Game.setBoard(1,new StarField(200,"green"))
+		Game.init('game')
+		
+		
+	</script>
+</body>
+</html>

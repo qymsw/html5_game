@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>apply_test</title>
+</head>
+<body>
+	<script>
+		function Animal(name){
+		  this.name = name;
+		  this.showName = function(){
+		        alert(this.name);    
+		    } 
+		   this.getSome = function(){
+		   	alert('ok')
+		   }   
+		}
+
+		function Cat(name){
+			this.name = name
+		  // Animal.apply(this,[name]);
+		  // Animal[showName].apply(this,name);  
+			this.showName = function(){
+				alert("this.name")
+			}  
+		}
+		var show = function(){
+			alert(this.name)
+		}
+		var name = 'window.name'
+		// show()
+		// new Animal.showName.call(new Cat(),1111)
+
+		// 'showName'.call(new Cat)
+
+		// var cat = new Cat("咕咕");
+		// cat.getSome()
+		// var animal = new Animal("喵喵")
+		// alert(animal.name)
+		// animal.showName.apply(cat,[animal.name])
+		// Animal['showName'].apply(cat,"喵喵")
+		// cat.showName();
+
+		/*call的用法*/
+		// Animal.call(this,name);
+	</script>
+</body>
+</html>

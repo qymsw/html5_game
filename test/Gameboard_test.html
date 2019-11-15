@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>gameBoard_test</title>
+</head>
+<body>
+	<script>
+		var Gameboard = new function(){
+			this.add = function(obj){
+				obj.board = this
+			}
+			this.show = function(){
+				console.log("show")
+			}
+		}
+
+		var testObj = function(){
+			this.aa = function(){
+				this.board.show()
+			}			
+		}
+
+		var testobj = new testObj()
+		Gameboard.add(testobj);
+		testobj.board.add()
+	</script>
+</body>
+</html>
